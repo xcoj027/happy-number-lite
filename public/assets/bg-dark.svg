@@ -1,0 +1,57 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0%" stop-color="#0b1122"/>
+      <stop offset="48%" stop-color="#141a3a"/>
+      <stop offset="100%" stop-color="#0a0d1a"/>
+    </linearGradient>
+
+    <radialGradient id="blobCyan" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#11f3ff" stop-opacity="0.50"/>
+      <stop offset="100%" stop-color="#11f3ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blobCoral" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff7b4b" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#ff7b4b" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blobMint" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00c49a" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#00c49a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blobBlue" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#006fff" stop-opacity="0.50"/>
+      <stop offset="100%" stop-color="#006fff" stop-opacity="0"/>
+    </radialGradient>
+
+    <pattern id="lines" width="96" height="96" patternUnits="userSpaceOnUse" patternTransform="rotate(32)">
+      <line x1="0" y1="0" x2="0" y2="96" stroke="#ffffff" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+
+  <circle cx="240" cy="120" r="560" fill="url(#blobCyan)"/>
+  <circle cx="1820" cy="260" r="600" fill="url(#blobCoral)"/>
+  <circle cx="120" cy="1010" r="580" fill="url(#blobMint)"/>
+  <circle cx="1800" cy="1040" r="560" fill="url(#blobBlue)"/>
+
+  <rect width="1920" height="1080" fill="url(#lines)" opacity="0.06"/>
+
+  <g fill="none" stroke-width="3" opacity="0.20">
+    <circle cx="1560" cy="250" r="150" stroke="#11f3ff"/>
+    <circle cx="1560" cy="250" r="96" stroke="#11f3ff" stroke-width="2"/>
+    <polygon points="110,760 320,760 215,580" stroke="#f8e16c"/>
+    <rect x="1740" y="720" width="180" height="180" rx="26" stroke="#00c49a" transform="rotate(18 1830 810)"/>
+    <path d="M 300 300 h 90 M 345 255 v 90" stroke="#ff7b4b" stroke-width="10" stroke-linecap="round"/>
+  </g>
+
+  <g opacity="0.35">
+    <circle cx="640" cy="880" r="7" fill="#11f3ff"/>
+    <circle cx="1360" cy="170" r="6" fill="#f8e16c"/>
+    <circle cx="1180" cy="930" r="8" fill="#ff7b4b"/>
+    <circle cx="420" cy="520" r="5" fill="#00c49a"/>
+    <circle cx="1660" cy="640" r="6" fill="#006fff"/>
+  </g>
+
+  <rect width="1920" height="1080" fill="#000000" opacity="0.06"/>
+</svg>

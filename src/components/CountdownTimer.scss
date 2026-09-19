@@ -1,0 +1,76 @@
+/*
+ * Happy Number - Open Source Math Game
+ *
+ * This is an open-source project of https://math-hero.online and https://happy-number.online
+ * The author of this project is TNQ MEDIA
+ * GitHub: https://github.com/xcoj027/happy-number-lite
+ *
+ * You are free to clone, modify, contribute, fork, and build commercial products
+ * from this project. All pull requests are welcome.
+ * You can also open any issues or report bugs.
+
+ */
+
+.countdownTimer-timer {
+  position: relative;
+  width: 48px;
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.countdownTimer-timerUrgent {
+  animation: countdownTimer-urgentPulse 0.65s ease-in-out infinite;
+}
+
+@keyframes countdownTimer-urgentPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.countdownTimer-value {
+  font-size: 0.82rem;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  color: var(--t-primary);
+  pointer-events: none;
+  line-height: 1;
+}
+
+.countdownTimer-penaltyFloat {
+  position: absolute;
+  top: -2px;
+  right: 19px;
+  transform: translateX(50%) translateY(0);
+
+  font-size: 0.65rem;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  color: #ff4757;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+
+  animation: countdownTimer-penaltyDrop 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  text-shadow:
+    0 0 6px rgba(255, 71, 87, 0.80),
+    0 1px 3px rgba(0, 0, 0, 0.60);
+}
+
+@keyframes countdownTimer-penaltyDrop {
+  0% {
+    opacity: 1;
+    transform: translateX(50%) translateY(0px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(50%) translateY(-8px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(50%) translateY(14px);
+  }
+}

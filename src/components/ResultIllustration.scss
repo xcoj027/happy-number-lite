@@ -1,0 +1,128 @@
+/*
+ * Happy Number - Open Source Math Game
+ *
+ * This is an open-source project of https://math-hero.online and https://happy-number.online
+ * The author of this project is TNQ MEDIA
+ * GitHub: https://github.com/xcoj027/happy-number-lite
+ *
+ * You are free to clone, modify, contribute, fork, and build commercial products
+ * from this project. All pull requests are welcome.
+ * You can also open any issues or report bugs.
+
+ */
+
+.resultIllustration-wrap {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	user-select: none;
+}
+
+.resultIllustration-svg {
+	width: auto;
+	max-width: 100%;
+	height: clamp(120px, 26vh, 168px);
+	aspect-ratio: 440 / 310;
+	overflow: visible;
+}
+
+
+
+.resultIllustration-floatTrophy {
+	transform-box: fill-box;
+	transform-origin: center;
+	animation: resultIllustration-riFloat 4.2s ease-in-out infinite;
+}
+
+
+
+.resultIllustration-crownFloat {
+	transform-box: fill-box;
+	transform-origin: center bottom;
+	animation: resultIllustration-crownBob 3.0s ease-in-out infinite;
+}
+
+
+
+.resultIllustration-floatB {
+	transform-box: fill-box;
+	transform-origin: center;
+	animation: resultIllustration-riFloat 5.4s ease-in-out infinite;
+	animation-delay: 0.35s;
+}
+
+.resultIllustration-floatC {
+	transform-box: fill-box;
+	transform-origin: center;
+	animation: resultIllustration-riFloat 4s ease-in-out infinite;
+	animation-delay: 0.7s;
+}
+
+.resultIllustration-floatD {
+	transform-box: fill-box;
+	transform-origin: center;
+	animation: resultIllustration-riFloat 5.8s ease-in-out infinite;
+	animation-delay: 1s;
+}
+
+
+
+
+.resultIllustration-trophyShine {
+	animation: resultIllustration-shineSweep 3.2s ease-in-out infinite;
+}
+
+
+
+.resultIllustration-sparkle {
+	animation: resultIllustration-riTwinkle 2.6s ease-in-out infinite;
+}
+
+
+
+.resultIllustration-trophyEntrance {
+	animation: resultIllustration-trophyEntrance 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+
+
+@keyframes resultIllustration-riFloat {
+	0%, 100% { transform: translateY(0); }
+	50%      { transform: translateY(-8px); }
+}
+
+@keyframes resultIllustration-crownBob {
+	0%, 100% { transform: translateY(0) rotate(-1deg); }
+	50%      { transform: translateY(-5px) rotate(1deg); }
+}
+
+
+@keyframes resultIllustration-shineSweep {
+	0%, 100% { opacity: 0.2; transform: translateX(-4px); }
+	50%      { opacity: 0.7; transform: translateX(4px); }
+}
+
+@keyframes resultIllustration-riTwinkle {
+	0%, 100% { opacity: 0.25; transform: scale(0.85); }
+	50%      { opacity: 1;    transform: scale(1.15); }
+}
+
+@keyframes resultIllustration-trophyEntrance {
+	0%   { transform: scale(0.5) translateY(24px); opacity: 0; }
+	100% { transform: scale(1)   translateY(0);    opacity: 1; }
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+	.resultIllustration-floatTrophy,
+	.resultIllustration-crownFloat,
+	.resultIllustration-floatB,
+	.resultIllustration-floatC,
+	.resultIllustration-floatD,
+	.resultIllustration-trophyShine,
+	.resultIllustration-sparkle,
+	.resultIllustration-trophyEntrance {
+		animation: none;
+	}
+}

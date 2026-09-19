@@ -1,0 +1,603 @@
+/*
+ * Happy Number - Open Source Math Game
+ *
+ * This is an open-source project of https://math-hero.online and https://happy-number.online
+ * The author of this project is TNQ MEDIA
+ * GitHub: https://github.com/xcoj027/happy-number-lite
+ *
+ * You are free to clone, modify, contribute, fork, and build commercial products
+ * from this project. All pull requests are welcome.
+ * You can also open any issues or report bugs.
+ */
+
+@use '../../styles/colors' as c;
+
+.carRacingGame-raceRoot {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	flex: 1;
+	height: 100%;
+	min-width: 0;
+
+	min-height: 580px;
+	overflow: hidden;
+	background:
+		radial-gradient(circle at 50% 12%, rgba(16, 185, 129, 0.16), transparent 45%),
+		radial-gradient(circle at 50% 88%, rgba(56, 189, 248, 0.14), transparent 42%),
+		linear-gradient(180deg, #050d1d 0%, #0a1832 50%, #0d1e3c 100%);
+	border-radius: 16px;
+
+	@media (max-width: 600px) {
+
+		height: 100%;
+		min-height: 0;
+		border-radius: 0;
+	}
+}
+
+.carRacingGame-scaleWrap {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	width: 100%;
+	height: 100%;
+	min-width: 0;
+	min-height: 0;
+}
+
+.carRacingGame-hud {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	padding: 10px 54px 8px 20px;
+	background: transparent;
+	pointer-events: none;
+}
+
+.carRacingGame-hudSection {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2px;
+	min-width: 64px;
+}
+
+.carRacingGame-hudLabel {
+	font-family: 'Courier New', monospace;
+	font-size: 0.62rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	color: rgba(255, 255, 255, 0.7);
+	text-transform: uppercase;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+
+}
+
+.carRacingGame-hudValue {
+	font-family: 'Courier New', monospace;
+	font-size: 1.35rem;
+	font-weight: 900;
+	color: #ffffff;
+	letter-spacing: 0.04em;
+	text-shadow:
+		0 0 12px rgba(255, 255, 255, 0.5),
+		0 0 24px rgba(56, 189, 248, 0.4);
+
+}
+
+.carRacingGame-heartsRow {
+	display: flex;
+	gap: 3px;
+	align-items: center;
+	margin-top: 1px;
+}
+
+.carRacingGame-heartFull {
+	font-size: 1.15rem;
+	color: c.$strawberry-red;
+	text-shadow: 0 0 8px rgba(255, 24, 63, 0.8);
+	animation: carRacingGame-heartPulse 1.4s ease-in-out infinite;
+
+	&:nth-child(2) { animation-delay: 0.2s; }
+	&:nth-child(3) { animation-delay: 0.4s; }
+}
+
+.carRacingGame-heartEmpty {
+	font-size: 1.15rem;
+	color: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes carRacingGame-heartPulse {
+	0%, 100% { transform: scale(1);    }
+	50%       { transform: scale(1.18); }
+}
+
+.carRacingGame-carSign {
+	position: absolute;
+	top: 54px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 15;
+	pointer-events: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 68px;
+	height: 68px;
+	border-radius: 50%;
+	background:
+		radial-gradient(circle at 36% 30%, rgba(255, 244, 205, 0.35), transparent 22%),
+		radial-gradient(circle at 50% 54%, rgba(245, 158, 11, 0.38), rgba(120, 20, 20, 0.92) 58%, rgba(15, 23, 42, 0.98) 100%);
+	border: 2px solid rgba(251, 191, 36, 0.85);
+	box-shadow:
+		0 0 0 4px rgba(239, 68, 68, 0.18),
+		0 0 30px rgba(245, 158, 11, 0.55),
+		0 14px 28px rgba(0, 0, 0, 0.46),
+		0 0 18px rgba(251, 191, 36, 0.22) inset;
+	opacity: 0;
+	transition: opacity 0.35s ease, transform 0.35s ease;
+
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		border-radius: inherit;
+		pointer-events: none;
+	}
+
+	&::before {
+		inset: 6px;
+		border: 1px dashed rgba(255, 226, 108, 0.5);
+		box-shadow: 0 0 12px rgba(255, 226, 108, 0.22) inset;
+		animation: carRacingGame-signRingClockwise 5.2s linear infinite;
+	}
+
+	&::after {
+		inset: -7px;
+		background:
+			conic-gradient(from 210deg, transparent 0 14%, rgba(251, 191, 36, 0.65) 15% 20%, transparent 21% 48%, rgba(56, 189, 248, 0.45) 49% 55%, transparent 56% 100%);
+		filter: blur(0.2px);
+		opacity: 0.92;
+		mask: radial-gradient(circle, transparent 58%, #000 60%);
+		animation: carRacingGame-signRingCounterClockwise 3.8s linear infinite;
+	}
+
+	&.carRacingGame-visible {
+		opacity: 1;
+		animation: carRacingGame-signPulse 1.9s ease-in-out infinite;
+	}
+
+	@media (max-width: 600px) {
+		top: 48px;
+		width: 58px;
+		height: 58px;
+	}
+}
+
+.carRacingGame-carSignNumber {
+	position: relative;
+	z-index: 1;
+	font-family: 'Fuzzy Bubbles', cursive, sans-serif;
+	font-size: 1.55rem;
+	font-weight: 900;
+	color: #fbbf24;
+	letter-spacing: -0.02em;
+	line-height: 1;
+	text-shadow:
+		0 2px 0 rgba(0, 0, 0, 0.5),
+		0 0 16px rgba(245, 158, 11, 0.9);
+
+	@media (max-width: 600px) {
+		font-size: 1.34rem;
+	}
+}
+
+.carRacingGame-carSignNumberSm {
+	font-size: 1.12rem;
+
+	@media (max-width: 600px) {
+		font-size: 0.95rem;
+	}
+}
+
+@keyframes carRacingGame-signPulse {
+	0%, 100% {
+		transform: translateX(-50%) scale(1);
+	}
+	50% {
+		transform: translateX(-50%) scale(1.035);
+	}
+}
+
+@keyframes carRacingGame-signRingClockwise {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes carRacingGame-signRingCounterClockwise {
+	to {
+		transform: rotate(-360deg);
+	}
+}
+
+.carRacingGame-hintBar {
+	position: absolute;
+	bottom: 92px;
+	left: 10px;
+	z-index: 15;
+	pointer-events: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: min(148px, calc(100vw - 44px));
+
+	@media (max-width: 600px) {
+		bottom: 76px;
+		left: 8px;
+		width: min(132px, calc(100vw - 32px));
+	}
+}
+
+.carRacingGame-hintBoard {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	min-height: 64px;
+	padding: 12px 12px 10px;
+	border-radius: 10px;
+	border: 3px solid #6a4217;
+	background:
+		repeating-linear-gradient(
+			0deg,
+			rgba(255, 255, 255, 0.05) 0px,
+			rgba(255, 255, 255, 0.05) 2px,
+			rgba(0, 0, 0, 0.02) 2px,
+			rgba(0, 0, 0, 0.02) 4px,
+			transparent 4px,
+			transparent 8px
+		),
+		repeating-linear-gradient(
+			90deg,
+			rgba(0, 0, 0, 0.04) 0px,
+			rgba(0, 0, 0, 0.04) 1px,
+			transparent 1px,
+			transparent 28px
+		),
+		linear-gradient(180deg, #d79b52 0%, #b87532 52%, #91571f 100%);
+	box-shadow:
+		0 8px 14px rgba(0, 0, 0, 0.32),
+		inset 0 0 0 2px rgba(79, 47, 17, 0.3),
+		inset 0 1px 0 rgba(255, 255, 255, 0.22);
+	position: relative;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: -6px;
+		left: -4px;
+		right: -4px;
+		height: 10px;
+		border-radius: 8px 8px 5px 5px;
+		pointer-events: none;
+		background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
+		box-shadow:
+			0 2px 4px rgba(0, 0, 0, 0.25),
+			inset 0 -1px 2px rgba(148, 163, 184, 0.4);
+		z-index: 2;
+	}
+
+	@media (max-width: 600px) {
+		min-height: 58px;
+		padding: 10px 10px 8px;
+	}
+}
+
+.carRacingGame-hintPosts {
+	display: flex;
+	justify-content: space-between;
+	width: 62%;
+	margin-top: -2px;
+}
+
+.carRacingGame-hintPost {
+	width: 10px;
+	height: 28px;
+	border-radius: 0 0 4px 4px;
+	background:
+		linear-gradient(180deg, #8f5a23 0%, #aa6d2c 34%, #84501c 100%);
+	box-shadow:
+		inset 0 -2px 3px rgba(0, 0, 0, 0.24),
+		inset 0 1px 2px rgba(255, 255, 255, 0.12),
+		0 4px 8px rgba(0, 0, 0, 0.28);
+	position: relative;
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		background:
+			repeating-linear-gradient(
+				90deg,
+				transparent 0px,
+				transparent 4px,
+				rgba(0, 0, 0, 0.06) 4px,
+				rgba(0, 0, 0, 0.06) 5px
+			);
+	}
+
+	@media (max-width: 600px) {
+		width: 9px;
+		height: 24px;
+	}
+}
+
+.carRacingGame-hintText {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2px;
+	width: 100%;
+	color: #2f1b08;
+	font-size: 0.72rem;
+	font-weight: 800;
+	letter-spacing: 0.015em;
+	line-height: 1.15;
+	text-align: center;
+	white-space: normal;
+	text-wrap: balance;
+
+	span,
+	strong {
+		display: block;
+	}
+
+	strong {
+		color: #221204;
+		font-weight: 900;
+		text-transform: uppercase;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+	}
+
+	@media (max-width: 600px) {
+		font-size: 0.64rem;
+		line-height: 1.1;
+	}
+}
+
+.carRacingGame-canvasWrapper {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.carRacingGame-canvas {
+	display: block;
+	width: 100%;
+	height: 100%;
+	touch-action: none;
+}
+
+.carRacingGame-virtualControls {
+	position: absolute;
+	bottom: 16px;
+	left: 0;
+	right: 0;
+	z-index: 20;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 20px;
+	pointer-events: none;
+
+	@media (max-width: 600px) {
+		bottom: max(16px, env(safe-area-inset-bottom));
+		padding: 0 12px;
+	}
+}
+
+.carRacingGame-vBtn {
+	pointer-events: all;
+	position: relative;
+	width: 62px;
+	height: 62px;
+	border-radius: 22px;
+	border: 1px solid rgba(56, 189, 248, 0.5);
+	background:
+		radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.25), transparent 28%),
+		linear-gradient(145deg, rgba(56, 189, 248, 0.16), rgba(15, 23, 42, 0.72));
+	color: #38bdf8;
+	box-shadow:
+		0 12px 26px rgba(0, 0, 0, 0.35),
+		0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+		0 0 22px rgba(56, 189, 248, 0.15);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease, background 0.15s ease;
+	-webkit-tap-highlight-color: transparent;
+	touch-action: manipulation;
+	user-select: none;
+
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 6px;
+		border-radius: 16px;
+		border: 1px solid rgba(56, 189, 248, 0.22);
+		pointer-events: none;
+	}
+
+	svg {
+		position: relative;
+		z-index: 1;
+		width: 30px;
+		height: 30px;
+		filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.6));
+	}
+
+	&:hover {
+		border-color: rgba(56, 189, 248, 0.85);
+		box-shadow:
+			0 16px 30px rgba(0, 0, 0, 0.38),
+			0 0 0 1px rgba(255, 255, 255, 0.15) inset,
+			0 0 28px rgba(56, 189, 248, 0.28);
+		transform: translateY(-1px);
+	}
+
+	@media (max-width: 600px) {
+		width: 58px;
+		height: 58px;
+		border-radius: 20px;
+	}
+
+	&:active {
+		background:
+			radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.18), transparent 28%),
+			linear-gradient(145deg, rgba(56, 189, 248, 0.25), rgba(15, 23, 42, 0.78));
+		border-color: #38bdf8;
+		transform: scale(0.93);
+	}
+}
+
+.carRacingGame-vBtnCenter {
+	flex: 1;
+	text-align: center;
+	font-size: 0.72rem;
+	color: rgba(255, 255, 255, 0.35);
+	letter-spacing: 0.06em;
+	font-family: 'Courier New', monospace;
+	user-select: none;
+}
+
+.carRacingGame-vBtnSpacer {
+	flex: 1;
+}
+
+.carRacingGame-finishedOverlay {
+	position: absolute;
+	inset: 0;
+	z-index: 30;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(5, 13, 29, 0.7);
+	animation: carRacingGame-fadeIn 0.4s ease;
+}
+
+@keyframes carRacingGame-fadeIn {
+	from { opacity: 0; }
+	to   { opacity: 1; }
+}
+
+.carRacingGame-finishedCard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	padding: 32px 48px;
+	border-radius: 20px;
+	background: rgba(6, 18, 38, 0.94);
+	border: 2px solid rgba(251, 191, 36, 0.5);
+	box-shadow:
+		0 0 40px rgba(56, 189, 248, 0.25),
+		0 20px 60px rgba(0, 0, 0, 0.55);
+	animation: carRacingGame-cardPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes carRacingGame-cardPop {
+	from { transform: scale(0.8); opacity: 0; }
+	to   { transform: scale(1);   opacity: 1; }
+}
+
+.carRacingGame-finishedTitle {
+	font-size: 1.55rem;
+	font-weight: 900;
+	color: #fbbf24;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	text-shadow: 0 0 16px rgba(245, 158, 11, 0.7);
+}
+
+.carRacingGame-finishedScore {
+	font-family: 'Courier New', monospace;
+	font-size: 2.4rem;
+	font-weight: 900;
+	color: #38bdf8;
+	text-shadow: 0 0 20px rgba(56, 189, 248, 0.8);
+}
+
+.carRacingGame-finishedSub {
+	font-size: 0.85rem;
+	color: rgba(255, 255, 255, 0.6);
+	font-family: 'Courier New', monospace;
+	letter-spacing: 0.06em;
+}
+
+.carRacingGame-kmLabel        { display: none; }
+.carRacingGame-questionBadge  { display: none; }
+.carRacingGame-timerRing      { display: none; }
+.carRacingGame-timerSvg       { display: none; }
+.carRacingGame-timerTrack     { display: none; }
+.carRacingGame-timerArc       { display: none; }
+.carRacingGame-timerText      { display: none; }
+.carRacingGame-hudLeft        { display: none; }
+.carRacingGame-hudCenter      { display: none; }
+.carRacingGame-hudRight       { display: none; }
+.carRacingGame-finishedKm     { display: none; }
+.carRacingGame-canvasWrapper,
+.carRacingGame-canvas         {  }
+
+.carRacingGame-finishedWaiting {
+	margin-top: 14px;
+	font-size: 0.82rem;
+	color: rgba(255, 255, 255, 0.65);
+	font-style: italic;
+	letter-spacing: 0.03em;
+	animation: carRacingGame-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes carRacingGame-pulse {
+	0%, 100% { opacity: 0.65; }
+	50%       { opacity: 1; }
+}
+
+.carRacingGame-resultsBtn {
+	margin-top: 12px;
+	padding: 12px 32px;
+	border-radius: 12px;
+	border: 2px solid rgba(56, 189, 248, 0.75);
+	background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(16, 185, 129, 0.22));
+	color: #ffffff;
+	font-size: 1rem;
+	font-weight: 800;
+	letter-spacing: 0.06em;
+	cursor: pointer;
+	transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+
+	&:hover {
+		background: linear-gradient(135deg, rgba(56, 189, 248, 0.35), rgba(16, 185, 129, 0.35));
+		box-shadow: 0 0 22px rgba(56, 189, 248, 0.45);
+		transform: translateY(-1px);
+	}
+
+	&:active {
+		transform: scale(0.96);
+	}
+}

@@ -1,0 +1,44 @@
+/*
+ * Happy Number - Open Source Math Game
+ *
+ * This is an open-source project of https://math-hero.online and https://happy-number.online
+ * The author of this project is TNQ MEDIA
+ * GitHub: https://github.com/xcoj027/happy-number-lite
+ *
+ * You are free to clone, modify, contribute, fork, and build commercial products
+ * from this project. All pull requests are welcome.
+ * You can also open any issues or report bugs.
+
+ */
+
+.pageTransition-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex: 1;
+  min-height: 100dvh;
+}
+
+.pageTransition-slot {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
+}
+
+
+.pageTransition-slotEnter {
+  animation: pageTransition-pageEnter 0.3s ease both;
+  perspective: 600px;
+}
+
+@keyframes pageTransition-pageEnter {
+  from {
+    opacity: 0;
+    transform: rotateX(8deg) scaleY(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: rotateX(0) scaleY(1);
+  }
+}

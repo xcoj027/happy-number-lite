@@ -1,0 +1,294 @@
+/*
+ * Happy Number - Open Source Math Game
+ *
+ * This is an open-source project of https://math-hero.online and https://happy-number.online
+ * The author of this project is TNQ MEDIA
+ * GitHub: https://github.com/xcoj027/happy-number-lite
+ *
+ * You are free to clone, modify, contribute, fork, and build commercial products
+ * from this project. All pull requests are welcome.
+ * You can also open any issues or report bugs.
+
+ */
+@use './colors' as c;
+
+.animateFloat {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animateFloatSpin {
+  animation: floatSpin 4s ease-in-out infinite;
+}
+
+.animateFadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animateSlideInFromLeft {
+  animation: slideInFromLeft 0.5s ease-out;
+}
+
+.animateSlideInFromRight {
+  animation: slideInFromRight 0.5s ease-out;
+}
+
+.animateFeedbackAppear {
+  animation: feedbackAppear 0.3s ease-out;
+}
+
+.animateShake {
+  animation: shake 1.2s ease-in-out;
+}
+
+button {
+  * {
+    cursor: pointer !important;
+  }
+}
+
+.gamingScrollbar {
+  @media (min-width: 601px) {
+    &::-webkit-scrollbar {
+      width: 14px;
+      height: 14px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: c.$carbon-black;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: c.$cyan-glow;
+      border-radius: 10px;
+      border: 2px solid var(--t-faint);
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: c.$mint-leaf;
+      border-color: var(--t-muted);
+    }
+  }
+}
+
+.panelDivider {
+  height: 1px;
+  margin: 16px 0 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--b-divider),
+    transparent
+  );
+  margin-bottom: 12px;
+}
+
+.gameScreenLayout {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-top:    max(0.25rem, env(safe-area-inset-top));
+  padding-right:  max(1rem, env(safe-area-inset-right));
+  padding-bottom: max(0rem, env(safe-area-inset-bottom));
+  padding-left:   max(1rem, env(safe-area-inset-left));
+
+  @media (max-width: 600px) {
+    padding-top:    max(0.1rem, env(safe-area-inset-top));
+    padding-right:  max(0.5rem, env(safe-area-inset-right));
+    padding-bottom: max(0rem, env(safe-area-inset-bottom));
+    padding-left:   max(0.5rem, env(safe-area-inset-left));
+  }
+
+  @media (min-width: 601px) and (max-width: 1200px) {
+    padding-top:    max(0.25rem, env(safe-area-inset-top));
+    padding-right:  max(1.25rem, env(safe-area-inset-right));
+    padding-left:   max(1.25rem, env(safe-area-inset-left));
+    padding-bottom:   max(0rem, env(safe-area-inset-bottom));
+  }
+
+  @media (min-width: 601px) and (max-width: 1400px) and (max-height: 900px) and (orientation: landscape) {
+    padding-top:    max(0.15rem, env(safe-area-inset-top));
+    padding-right:  max(0.8rem, env(safe-area-inset-right));
+    padding-bottom: max(0rem, env(safe-area-inset-bottom));
+    padding-left:   max(0.8rem, env(safe-area-inset-left));
+  }
+}
+
+.pageTitle {
+  display: block;
+  text-align: center;
+  font-size: 2.45rem;
+  font-weight: 700;
+  font-family: 'Gluten', 'Baloo 2', 'Mali', cursive;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: transparent;
+  background: linear-gradient(to bottom, #fbbf24, var(--accent-purple));
+  background-size: 100% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleShimmer 3s ease-in-out infinite;
+  text-shadow: none;
+
+  @media (min-width: 601px) and (max-width: 1400px) and (max-height: 900px) and (orientation: landscape) {
+    font-size: 2.05rem;
+    line-height: 1;
+  }
+}
+
+.gameTopbar {
+  position: relative;
+  z-index: 20;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: var(--game-shell-width, 960px);
+  margin-top: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+
+  @media (max-width: 600px) {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 601px) and (max-width: 1200px) {
+    max-width: min(var(--game-shell-width, 960px), calc(100vw - 1.7rem));
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 601px) and (max-width: 1400px) and (max-height: 900px) and (orientation: landscape) {
+    max-width: min(var(--game-shell-width, 960px), calc(100vw - 1.7rem));
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 601px) {
+    max-width: var(--game-shell-width, 1160px);
+  }
+}
+
+.questionText {
+  font-family: 'Fuzzy Bubbles', cursive, sans-serif;
+  font-weight: 900;
+  color: var(--t-primary);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.gamePanel {
+  position: relative;
+  margin-top: 12px;
+  width: 100%;
+  border-radius: 28px;
+  isolation: isolate;
+  transform: translateZ(0);
+  overflow: hidden;
+  border: 1.5px solid rgba(122, 120, 118, 0.24);
+
+
+  @media (max-width: 600px) {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    align-self: center;
+  }
+}
+
+.menuPanel {
+  max-width: 28.2rem;
+  border-radius: 1.5rem 4.5rem 1.5rem 4.5rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: 600px) {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 100dvh !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+
+    border-top: none !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+
+    padding-top: max(1rem, env(safe-area-inset-top)) !important;
+    padding-bottom: max(1rem, env(safe-area-inset-bottom)) !important;
+  }
+
+  @media (min-width: 601px) {
+    max-height: calc(100dvh - 2rem);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  @media (min-width: 601px) and (max-width: 1200px) {
+    border-radius: 1.5rem;
+  }
+}
+
+.menuScaleFrame {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  zoom: var(--menu-scale, 1);
+
+  @supports not (zoom: 1) {
+    transform: scale(var(--menu-scale, 1));
+    transform-origin: center center;
+    width: calc(100% / var(--menu-scale, 1));
+  }
+}
+
+.gameScaleFrame {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  zoom: var(--game-scale, 1);
+
+  @supports not (zoom: 1) {
+    transform: scale(var(--game-scale, 1));
+    transform-origin: top center;
+    width: calc(100% / var(--game-scale, 1));
+  }
+}
+
+.menuPagePanel {
+  min-height: calc(80dvh * var(--menu-unscale, 1));
+  display: flex;
+  flex-direction: column;
+}
+
+.gameScreenLayoutScroll {
+  position: relative;
+  min-height: 100dvh;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  padding-top:    max(0.8rem, env(safe-area-inset-top));
+  padding-right:  max(0.4rem, env(safe-area-inset-right));
+  padding-bottom: max(0.8rem, env(safe-area-inset-bottom));
+  padding-left:   max(0.4rem, env(safe-area-inset-left));
+
+  @media (min-width: 1024px) and (orientation: landscape) {
+    padding-top:    max(1.25rem, env(safe-area-inset-top));
+    padding-right:  max(1.25rem, env(safe-area-inset-right));
+    padding-left:   max(1.25rem, env(safe-area-inset-left));
+    padding-bottom:   max(1.25rem, env(safe-area-inset-bottom));
+  }
+}

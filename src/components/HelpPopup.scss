@@ -1,0 +1,81 @@
+/*
+ * Happy Number - Open Source Math Game
+ *
+ * This is an open-source project of https://math-hero.online and https://happy-number.online
+ * The author of this project is TNQ MEDIA
+ * GitHub: https://github.com/xcoj027/happy-number-lite
+ *
+ * You are free to clone, modify, contribute, fork, and build commercial products
+ * from this project. All pull requests are welcome.
+ * You can also open any issues or report bugs.
+
+ */
+.helpPopup-content {
+  padding: 32px 24px;
+  max-height: calc(80vh - 100px);
+  overflow-y: auto;
+}
+
+.helpPopup-section {
+  margin-bottom: 24px;
+
+  &:last-child { margin-bottom: 0; }
+}
+
+.helpPopup-sectionTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--t-secondary);
+  margin: 0 0 8px 0;
+  text-align: left;
+}
+
+.helpPopup-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.helpPopup-listItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--t-tertiary);
+  text-align: left;
+}
+
+.helpPopup-bullet {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 9px;
+}
+
+.helpPopup-closePrimary {
+  display: block;
+  width: 100%;
+  margin-top: 28px;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  background: var(--bg-elevated);
+  border: 1px solid var(--b-input);
+  color: var(--t-primary);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover { background: var(--b-input); }
+}
+
+@media (max-width: 640px) {
+  .helpPopup-content { padding: 24px 20px; }
+  .helpPopup-listItem { font-size: 14px; line-height: 1.7; }
+}

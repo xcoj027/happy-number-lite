@@ -1,0 +1,407 @@
+/*
+ * Happy Number - Open Source Math Game
+ *
+ * This is an open-source project of https://math-hero.online and https://happy-number.online
+ * The author of this project is TNQ MEDIA
+ * GitHub: https://github.com/xcoj027/happy-number-lite
+ *
+ * You are free to clone, modify, contribute, fork, and build commercial products
+ * from this project. All pull requests are welcome.
+ * You can also open any issues or report bugs.
+
+ */
+@font-face {
+  font-family: 'Roboto Flex';
+  src: url('/fonts/RobotoFlex-Latin.woff2') format('woff2');
+  font-weight: 100 1000;
+  font-stretch: 100%;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Fuzzy Bubbles';
+  src: url('/fonts/FuzzyBubbles-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fuzzy Bubbles';
+  src: url('/fonts/FuzzyBubbles-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gluten';
+  src: url('/fonts/Gluten-Latin.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Gluten';
+  src: url('/fonts/Gluten-LatinExt.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Playpen Sans';
+  src: url('/fonts/PlaypenSans-LatinExt.woff2') format('woff2');
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Playpen Sans';
+  src: url('/fonts/PlaypenSans-Latin.woff2') format('woff2');
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Playpen Sans';
+  src: url('/fonts/PlaypenSans-Math.woff2') format('woff2');
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-208E, U+2090-209C, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
+}
+
+
+
+
+@font-face {
+  font-family: 'Baloo 2';
+  src: url('/fonts/Baloo2-LatinExt.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Baloo 2';
+  src: url('/fonts/Baloo2-Latin.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+
+@font-face {
+  font-family: 'Mali';
+  src: url('/fonts/Mali-Latin-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Mali';
+  src: url('/fonts/Mali-Latin-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Marmelad';
+  src: url('/fonts/Marmelad-Latin.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Marmelad';
+  src: url('/fonts/Marmelad-LatinExt.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+
+
+
+
+
+
+
+* {
+  font-family: 'Playpen Sans', 'Marmelad', 'Roboto Flex', 'Fuzzy Bubbles', 'Baloo 2', 'Mali', cursive, sans-serif;
+}
+
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25%       { transform: translateY(-20px) rotate(5deg); }
+  50%       { transform: translateY(-10px) rotate(-5deg); }
+  75%       { transform: translateY(-25px) rotate(3deg); }
+}
+
+@keyframes floatSpin {
+  0%   { transform: translateY(0px)   translateX(0px)  rotate(0deg)   scale(1);    }
+  25%  { transform: translateY(-25px) translateX(10px) rotate(90deg)  scale(1.1);  }
+  50%  { transform: translateY(-15px) translateX(-5px) rotate(180deg) scale(0.9);  }
+  75%  { transform: translateY(-30px) translateX(8px)  rotate(270deg) scale(1.05); }
+  100% { transform: translateY(0px)   translateX(0px)  rotate(360deg) scale(1);    }
+}
+
+@keyframes feedbackAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes titleShimmer {
+  0%   { background-position: center 0%; }
+  100% { background-position: center 100%; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%       { transform: translateX(-8px); }
+  20%       { transform: translateX(8px); }
+  30%       { transform: translateX(-8px); }
+  40%       { transform: translateX(8px); }
+  50%       { transform: translateX(-8px); }
+  60%       { transform: translateX(8px); }
+  70%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+  90%       { transform: translateX(-2px); }
+}
+
+
+
+
+
+body, #root {
+	transition:
+		background-color 0.35s ease,
+		color            0.25s ease;
+}
+
+button, a, input, textarea, select {
+	transition:
+		background-color 0.30s ease,
+		border-color     0.25s ease,
+		color            0.20s ease,
+		box-shadow       0.25s ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 768px) {
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(17, 243, 255, 0.32) rgba(255, 255, 255, 0.04);
+  }
+
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background:
+
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.04) 0%,
+        rgba(255, 255, 255, 0.02) 100%
+      );
+    border-radius: 999px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+      inset 0 1px 3px rgba(0, 0, 0, 0.28),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+
+    margin: 3px;
+  }
+
+  *::-webkit-scrollbar-track:vertical   { margin: 4px 0; }
+  *::-webkit-scrollbar-track:horizontal { margin: 0 4px; }
+
+
+  *::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+
+    border: 2px solid transparent;
+    background-clip: padding-box;
+
+    background-color: rgba(17, 243, 255, 0.28);
+    background-image:
+
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.30) 0%,
+        rgba(255, 255, 255, 0.08) 30%,
+        rgba(255, 255, 255, 0.00) 100%
+      );
+
+    box-shadow:
+
+      0 0 6px rgba(17, 243, 255, 0.20),
+
+      inset 0 -1px 2px rgba(0, 0, 0, 0.25),
+
+      inset 0  1px 1px rgba(255, 255, 255, 0.20);
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(17, 243, 255, 0.52);
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.40) 0%,
+        rgba(255, 255, 255, 0.12) 30%,
+        rgba(255, 255, 255, 0.00) 100%
+      );
+    box-shadow:
+      0 0 12px rgba(17, 243, 255, 0.45),
+      0 0 4px  rgba(17, 243, 255, 0.30),
+      inset 0 -1px 2px rgba(0, 0, 0, 0.20),
+      inset 0  1px 1px rgba(255, 255, 255, 0.28);
+  }
+
+  *::-webkit-scrollbar-thumb:active {
+    background-color: rgba(0, 196, 154, 0.65);
+    box-shadow:
+      0 0 14px rgba(0, 196, 154, 0.50),
+      inset 0 -1px 2px rgba(0, 0, 0, 0.30),
+      inset 0  1px 1px rgba(255, 255, 255, 0.22);
+  }
+
+
+  *::-webkit-scrollbar-corner {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+  }
+
+
+  :root[data-theme="light"] {
+    * {
+      scrollbar-color: rgba(0, 196, 154, 0.40) rgba(0, 0, 0, 0.05);
+    }
+
+    *::-webkit-scrollbar-track {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.04) 0%,
+          rgba(0, 0, 0, 0.02) 100%
+        );
+      border: 1px solid rgba(0, 0, 0, 0.07);
+      box-shadow:
+        inset 0 1px 3px rgba(0, 0, 0, 0.10),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.50);
+    }
+
+    *::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 196, 154, 0.35);
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.55) 0%,
+          rgba(255, 255, 255, 0.15) 35%,
+          rgba(255, 255, 255, 0.00) 100%
+        );
+      box-shadow:
+        0 0 6px rgba(0, 196, 154, 0.18),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.12),
+        inset 0  1px 1px rgba(255, 255, 255, 0.70);
+    }
+
+    *::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(0, 196, 154, 0.60);
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.65) 0%,
+          rgba(255, 255, 255, 0.20) 35%,
+          rgba(255, 255, 255, 0.00) 100%
+        );
+      box-shadow:
+        0 0 12px rgba(0, 196, 154, 0.35),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.10),
+        inset 0  1px 1px rgba(255, 255, 255, 0.80);
+    }
+
+    *::-webkit-scrollbar-thumb:active {
+      background-color: rgba(17, 243, 255, 0.55);
+      box-shadow:
+        0 0 14px rgba(17, 243, 255, 0.30),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.10),
+        inset 0  1px 1px rgba(255, 255, 255, 0.75);
+    }
+
+    *::-webkit-scrollbar-corner {
+      background: rgba(0, 0, 0, 0.03);
+    }
+  }
+}

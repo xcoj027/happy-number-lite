@@ -1,0 +1,57 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="34%" r="78%">
+      <stop offset="0%" stop-color="#1b1030"/>
+      <stop offset="55%" stop-color="#120a24"/>
+      <stop offset="100%" stop-color="#07041a"/>
+    </radialGradient>
+    <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f8e16c" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#f8e16c" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="violet" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cyan" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#11f3ff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#11f3ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+
+  <circle cx="960" cy="360" r="620" fill="url(#halo)"/>
+  <circle cx="260" cy="980" r="520" fill="url(#violet)"/>
+  <circle cx="1760" cy="880" r="480" fill="url(#cyan)"/>
+
+  <g fill="none" stroke="#f8e16c" stroke-width="2" opacity="0.12">
+    <circle cx="960" cy="360" r="220"/>
+    <circle cx="960" cy="360" r="340" opacity="0.7"/>
+  </g>
+
+  <g stroke="#f8e16c" stroke-width="3" opacity="0.08" stroke-linecap="round">
+    <line x1="960" y1="220" x2="120" y2="700"/>
+    <line x1="960" y1="220" x2="480" y2="780"/>
+    <line x1="960" y1="220" x2="960" y2="820"/>
+    <line x1="960" y1="220" x2="1440" y2="780"/>
+    <line x1="960" y1="220" x2="1800" y2="700"/>
+  </g>
+
+  <g opacity="0.55">
+    <circle cx="300" cy="220" r="10" fill="#11f3ff"/>
+    <circle cx="1620" cy="180" r="8" fill="#ff7b4b"/>
+    <circle cx="1500" cy="760" r="11" fill="#f8e16c"/>
+    <circle cx="420" cy="820" r="9" fill="#00c49a"/>
+    <circle cx="1180" cy="900" r="7" fill="#7c3aed"/>
+
+    <polygon points="180,480 214,540 146,540" fill="#ff7b4b"/>
+    <polygon points="1760,420 1800,490 1720,490" fill="#f8e16c"/>
+
+    <rect x="120" y="650" width="26" height="26" rx="6" fill="#00c49a" transform="rotate(22 133 663)"/>
+    <rect x="1700" y="620" width="24" height="24" rx="6" fill="#11f3ff" transform="rotate(-18 1712 632)"/>
+    <rect x="880" y="930" width="22" height="22" rx="6" fill="#f8e16c" transform="rotate(30 891 941)"/>
+  </g>
+
+  <rect width="1920" height="1080" fill="#000000" opacity="0.05"/>
+</svg>

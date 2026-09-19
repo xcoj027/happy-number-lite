@@ -1,0 +1,393 @@
+/*
+ * Happy Number - Open Source Math Game
+ *
+ * This is an open-source project of https://math-hero.online and https://happy-number.online
+ * The author of this project is TNQ MEDIA
+ * GitHub: https://github.com/xcoj027/happy-number-lite
+ *
+ * You are free to clone, modify, contribute, fork, and build commercial products
+ * from this project. All pull requests are welcome.
+ * You can also open any issues or report bugs.
+
+ */
+@use '../../styles/colors' as c;
+
+.questionCard-root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.questionCard-questionBox {
+  position: relative;
+  z-index: 5;
+  align-self: center;
+  margin: 32px 0 8px;
+  width: min(96%, 1040px);
+  padding: 12px 20px;
+  text-align: center;
+
+  @media (max-width: 600px) {
+    margin: 20px 0 6px;
+    padding: 10px 14px;
+  }
+}
+
+.questionCard-questionText {
+  margin: 0;
+  font-size: clamp(5rem, 27vw, 15rem);
+  line-height: 1.04;
+  text-align: center;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.questionCard-questionTextQuiz {
+  font-size: clamp(3rem, 12vw, 7.5rem);
+  line-height: 1.1;
+}
+
+.questionCard-canvasArea {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+
+@keyframes questionCard-floatGentle1 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(5px, -8px) rotate(5deg);
+  }
+}
+
+@keyframes questionCard-floatGentle2 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(-6px, -10px) rotate(-8deg);
+  }
+}
+
+@keyframes questionCard-floatGentle3 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(8px, -6px) rotate(10deg);
+  }
+}
+
+@keyframes questionCard-floatGentle4 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(-5px, -12px) rotate(-6deg);
+  }
+}
+
+.questionCard-floatGentle1 {
+  animation: questionCard-floatGentle1 4s ease-in-out infinite;
+}
+
+.questionCard-floatGentle2 {
+  animation: questionCard-floatGentle2 5s ease-in-out infinite;
+}
+
+.questionCard-floatGentle3 {
+  animation: questionCard-floatGentle3 4.5s ease-in-out infinite;
+}
+
+.questionCard-floatGentle4 {
+  animation: questionCard-floatGentle4 5.5s ease-in-out infinite;
+}
+
+.questionCard-floatGentle1Long {
+  animation: questionCard-floatGentle1 6s ease-in-out infinite;
+}
+
+.questionCard-floatGentle2Medium {
+  animation: questionCard-floatGentle2 4.8s ease-in-out infinite;
+}
+
+.questionCard-floatGentle3Medium {
+  animation: questionCard-floatGentle3 5.2s ease-in-out infinite;
+}
+
+.questionCard-floatGentle4Short {
+  animation: questionCard-floatGentle4 4.3s ease-in-out infinite;
+}
+
+.questionCard-borderContainer {
+  background-size: 200% 200%;
+  box-shadow: 0 8px 24px rgba(c.$cyan-glow, 0.3);
+  background-image: linear-gradient(145deg, c.$mint-leaf, c.$royal-gold, c.$cyan-glow);
+
+  &--urgent {
+    box-shadow: 0 8px 24px rgba(c.$strawberry-red, 0.4);
+    background-image: linear-gradient(145deg, c.$strawberry-red, c.$coral-glow, #fca5a5);
+  }
+}
+
+.questionCard-stampWrapper {
+  z-index: 70;
+}
+
+.questionCard-stampRotate {
+  animation: questionCard-stampBounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.questionCard-stampRotateRight {
+  animation: questionCard-stampBounceRight 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.questionCard-stampBorder {
+  border-style: double;
+  border-width: 8px;
+  filter: contrast(1.2) brightness(0.9) saturate(1.3);
+  transform: rotate(-12deg);
+}
+
+.questionCard-stampBorderOrange {
+  border-style: double;
+  border-width: 8px;
+  filter: contrast(1.2) brightness(0.9) saturate(1.3);
+  transform: rotate(6deg);
+}
+
+.questionCard-stampBorderGreen {
+  border-style: double;
+  border-width: 8px;
+  filter: contrast(1.2) brightness(0.9) saturate(1.3);
+  transform: rotate(-12deg);
+}
+
+.questionCard-stampText {
+  font-family: 'Fuzzy Bubbles', cursive, sans-serif;
+  text-shadow:
+    3px 3px 0px rgba(0,0,0,0.25),
+    -1px -1px 0px rgba(255,255,255,0.4),
+    0 0 10px rgba(248, 113, 113, 0.3);
+  -webkit-text-stroke: 2.5px rgba(248, 113, 113, 0.6);
+  letter-spacing: 0.2em;
+  opacity: 0.85;
+}
+
+.questionCard-stampTextOrange {
+  font-family: 'Fuzzy Bubbles', cursive, sans-serif;
+  text-shadow:
+    3px 3px 0px rgba(0,0,0,0.25),
+    -1px -1px 0px rgba(255,255,255,0.4),
+    0 0 10px rgba(251, 146, 60, 0.3);
+  -webkit-text-stroke: 2.5px rgba(251, 146, 60, 0.6);
+  letter-spacing: 0.2em;
+  opacity: 0.85;
+}
+
+.questionCard-stampTextGreen {
+  font-family: 'Fuzzy Bubbles', cursive, sans-serif;
+  text-shadow:
+    3px 3px 0px rgba(0,0,0,0.25),
+    -1px -1px 0px rgba(255,255,255,0.4),
+    0 0 10px rgba(74, 222, 128, 0.3);
+  -webkit-text-stroke: 2.5px rgba(74, 222, 128, 0.6);
+  letter-spacing: 0.2em;
+  opacity: 0.85;
+}
+
+.questionCard-childrenWrapper {
+  z-index: 60;
+}
+
+@keyframes questionCard-stampBounce {
+  0% {
+    transform: scale(0) rotate(-12deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1) rotate(-12deg);
+  }
+  100% {
+    transform: scale(1) rotate(-12deg);
+    opacity: 1;
+  }
+}
+
+@keyframes questionCard-stampBounceRight {
+  0% {
+    transform: scale(0) rotate(6deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1) rotate(6deg);
+  }
+  100% {
+    transform: scale(1) rotate(6deg);
+    opacity: 1;
+  }
+}
+
+
+
+.questionCard-quizQuestionText {
+  font-family: 'Times New Roman', 'Georgia', serif;
+  font-size: clamp(1.50rem, 3.64vw, 2.08rem);
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--t-primary);
+  text-align: left;
+  padding: 0.5rem 0.25rem 1rem;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+
+
+  .questionCard-katex {
+    font-size: 1.05em;
+  }
+
+
+  code {
+    background: var(--bg-elevated);
+    border-radius: 0.3em;
+    padding: 0.1em 0.35em;
+    font-size: 0.95em;
+  }
+}
+
+
+
+
+@keyframes questionCard-questionRevealAnim {
+  0% {
+    opacity: 0;
+    transform: scale(0.55) translateY(-18px);
+    filter: blur(12px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.06) translateY(2px);
+    filter: blur(0px);
+  }
+  80% {
+    transform: scale(0.97) translateY(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+}
+
+.questionCard-questionReveal {
+  animation: questionCard-questionRevealAnim 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  will-change: transform, opacity, filter;
+}
+
+
+.questionCard-quizFeedbackText {
+  font-family: 'Times New Roman', 'Georgia', serif;
+  font-size: clamp(1.24rem, 2.6vw, 1.43rem) !important;
+  line-height: 1.5;
+}
+
+
+.questionCard-progressFill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #00C49A 0%, #4fc3f7 100%);
+  box-shadow: 0 0 8px rgba(0, 196, 154, 0.45);
+  transition: width 0.55s cubic-bezier(0.34, 1.4, 0.64, 1);
+  position: relative;
+
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.45) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: questionCard-progressShimmer 0.7s ease-out forwards;
+  }
+}
+
+@keyframes questionCard-progressShimmer {
+  from { background-position: -200% center; opacity: 1; }
+  to   { background-position:  200% center; opacity: 0; }
+}
+
+
+.questionCard-urgentPulse {
+  animation: questionCard-urgentRing 0.8s ease-out infinite;
+  border: 2px solid rgba(239, 68, 68, 0.6);
+}
+
+@keyframes questionCard-urgentRing {
+  0%   { transform: scale(0.85); opacity: 0.8; }
+  70%  { transform: scale(1.25); opacity: 0;   }
+  100% { transform: scale(0.85); opacity: 0;   }
+}
+
+
+
+.questionCard-waitingBanner {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: rgba(10, 15, 30, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  white-space: nowrap;
+  pointer-events: none;
+  animation: questionCard-bannerFadeIn 0.28s ease both;
+}
+
+@keyframes questionCard-bannerFadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(6px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.questionCard-waitingCount {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: rgba(17, 243, 255, 0.90);
+  font-variant-numeric: tabular-nums;
+}
+
+.questionCard-waitingSpinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(17, 243, 255, 0.22);
+  border-top-color: rgba(17, 243, 255, 0.95);
+  animation: questionCard-waitingSpin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+.questionCard-waitingText {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.01em;
+}
+
+@keyframes questionCard-waitingSpin {
+  to { transform: rotate(360deg); }
+}

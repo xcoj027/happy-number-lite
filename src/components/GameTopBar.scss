@@ -1,0 +1,241 @@
+/*
+ * Happy Number - Open Source Math Game
+ *
+ * This is an open-source project of https://math-hero.online and https://happy-number.online
+ * The author of this project is TNQ MEDIA
+ * GitHub: https://github.com/xcoj027/happy-number-lite
+ *
+ * You are free to clone, modify, contribute, fork, and build commercial products
+ * from this project. All pull requests are welcome.
+ * You can also open any issues or report bugs.
+
+ */
+
+@use '../styles/colors' as c;
+
+.gameTopBar-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  justify-content: flex-start;
+
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+    gap: 8px 10px;
+  }
+
+  @media (min-width: 601px) and (max-width: 1200px) {
+    gap: 6px;
+  }
+}
+
+.gameTopBar-leftCluster {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  order: 1;
+
+  @media (max-width: 600px) {
+    flex: 1 1 0;
+  }
+
+  @media (min-width: 601px) and (max-width: 1200px) {
+    gap: 8px;
+  }
+}
+
+.gameTopBar-backBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px;
+  border-radius: 10px;
+  border: 1.5px solid var(--b-panel);
+  background: transparent;
+  color: var(--t-secondary);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background: var(--bg-surface-mid);
+    border-color: var(--t-faint);
+    color: var(--t-primary);
+  }
+
+  & > * {
+    cursor: pointer !important;
+  }
+
+  @media (min-width: 601px) and (max-width: 1200px) {
+    padding: 6px;
+    border-radius: 9px;
+  }
+}
+
+.gameTopBar-gradePill {
+  display: none;
+  align-items: center;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--bg-surface-high);
+  border: 1px solid var(--b-divider);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--t-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: 0.04em;
+
+  @media (min-width: 601px) { display: flex; }
+
+  @media (min-width: 601px) and (max-width: 1200px) {
+    padding: 5px 10px;
+    font-size: 0.68rem;
+  }
+
+}
+
+.gameTopBar-metricsCluster {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  order: 2;
+  margin-left: auto;
+
+  @media (max-width: 600px) {
+    order: 3;
+    width: 100%;
+    flex: 1 0 100%;
+    justify-content: center;
+    overflow-x: auto;
+    padding-top: 2px;
+    margin-left: 0;
+  }
+}
+
+.gameTopBar-scorePill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--bg-surface-high);
+  border: 1px solid var(--b-divider);
+  position: relative;
+  overflow: visible;
+
+  @media (min-width: 601px) and (max-width: 1200px) {
+    padding: 4px 10px;
+  }
+}
+
+.gameTopBar-scoreLabel {
+  font-size: 0.68rem;
+  color: var(--t-muted);
+
+  @media (min-width: 601px) and (max-width: 1200px) {
+    font-size: 0.64rem;
+  }
+}
+
+.gameTopBar-scoreValue {
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: var(--t-primary);
+  min-width: 2ch;
+  text-align: right;
+  white-space: nowrap;
+
+  &[data-negative='true'] {
+    color: #f87171;
+  }
+
+  @media (min-width: 601px) and (max-width: 1200px) {
+    font-size: 0.78rem;
+  }
+}
+
+.gameTopBar-aiExtraSlot {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.gameTopBar-answeredPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--b-divider);
+  flex-shrink: 0;
+
+  @media (min-width: 601px) and (max-width: 1200px) {
+    padding: 4px 9px;
+  }
+}
+
+.gameTopBar-answeredValue {
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: var(--accent-cyan);
+}
+
+.gameTopBar-answeredSep {
+  font-size: 0.72rem;
+  color: var(--t-faint);
+  margin: 0 1px;
+}
+
+.gameTopBar-answeredTotal {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--t-muted);
+}
+
+@keyframes gameTopBar-scoreFlyGain {
+  0%   { transform: translateY(-10px); opacity: 0; }
+  20%  { opacity: 1; }
+  70%  { transform: translateY(4px);  opacity: 1; }
+  100% { transform: translateY(4px);  opacity: 0; }
+}
+
+@keyframes gameTopBar-scoreFlyLoss {
+  0%   { transform: translateY(10px); opacity: 0; }
+  20%  { opacity: 1; }
+  70%  { transform: translateY(-4px); opacity: 1; }
+  100% { transform: translateY(-4px); opacity: 0; }
+}
+
+.gameTopBar-scoreFly {
+  position: absolute;
+  right: 0;
+  left: 0;
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 900;
+  pointer-events: none;
+  white-space: nowrap;
+  animation-duration: 0.85s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+.gameTopBar-scoreFlyGain {
+  color: #4ade80;
+  animation-name: gameTopBar-scoreFlyGain;
+  top: auto;
+  bottom: 100%;
+}
+
+.gameTopBar-scoreFlyLoss {
+  color: #f87171;
+  animation-name: gameTopBar-scoreFlyLoss;
+  top: 100%;
+  bottom: auto;
+}

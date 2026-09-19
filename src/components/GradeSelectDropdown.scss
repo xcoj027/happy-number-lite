@@ -1,0 +1,141 @@
+/*
+ * Happy Number - Open Source Math Game
+ *
+ * This is an open-source project of https://math-hero.online and https://happy-number.online
+ * The author of this project is TNQ MEDIA
+ * GitHub: https://github.com/xcoj027/happy-number-lite
+ *
+ * You are free to clone, modify, contribute, fork, and build commercial products
+ * from this project. All pull requests are welcome.
+ * You can also open any issues or report bugs.
+
+ */
+.gradeSelectDropdown-wrap {
+  width: 100%;
+  max-width: 300px;
+  margin-inline: auto;
+}
+
+.gradeSelectDropdown-field {
+  position: relative;
+  width: 100%;
+}
+
+.gradeSelectDropdown-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 12px 11px 20px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  font-family: 'Fuzzy Bubbles', cursive, sans-serif;
+  color: var(--t-primary);
+  background: var(--bg-surface-mid);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.16);
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease, background 0.15s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    background: var(--bg-surface-high);
+  }
+
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.16);
+  }
+}
+
+.gradeSelectDropdown-triggerOpen {
+  background: var(--bg-surface-high);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.16), 0 0 0 3px rgba(79, 209, 165, 0.3);
+
+  .gradeSelectDropdown-chevron {
+    transform: rotate(180deg);
+  }
+}
+
+.gradeSelectDropdown-triggerText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gradeSelectDropdown-chevron {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4fd1a5, #22a385);
+  color: #ffffff;
+  padding: 4px;
+  transition: transform 0.2s ease;
+}
+
+.gradeSelectDropdown-menu {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+  max-height: 260px;
+  overflow-y: auto;
+  background: var(--grade-card-base, #252240);
+  border-radius: 22px;
+  box-shadow: 0 10px 0 rgba(0, 0, 0, 0.14), 0 18px 36px rgba(2, 6, 23, 0.4);
+  outline: none;
+  animation: gradeSelectDropdown-menuIn 200ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes gradeSelectDropdown-menuIn {
+  from { opacity: 0; transform: translateY(-10px) scale(0.92); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.gradeSelectDropdown-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: 'Fuzzy Bubbles', cursive, sans-serif;
+  color: var(--t-secondary);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+
+  & + & {
+    margin-top: 3px;
+  }
+
+  &:hover {
+    transform: translateX(2px);
+  }
+}
+
+.gradeSelectDropdown-optionActive {
+  background: var(--bg-surface-high);
+  color: var(--t-primary);
+}
+
+.gradeSelectDropdown-optionSelected {
+  background: linear-gradient(135deg, #4fd1a5, #22a385);
+  color: #ffffff;
+}
+
+.gradeSelectDropdown-check {
+  flex-shrink: 0;
+  color: #ffffff;
+}

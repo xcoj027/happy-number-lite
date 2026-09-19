@@ -1,0 +1,62 @@
+/*
+ * Happy Number - Open Source Math Game
+ *
+ * This is an open-source project of https://math-hero.online and https://happy-number.online
+ * The author of this project is TNQ MEDIA
+ * GitHub: https://github.com/xcoj027/happy-number-lite
+ *
+ * You are free to clone, modify, contribute, fork, and build commercial products
+ * from this project. All pull requests are welcome.
+ * You can also open any issues or report bugs.
+
+ */
+
+$carbon-black: #1f1f1f;
+$cyan-glow: #11f3ff;
+$mint-leaf: #00c49a;
+$royal-gold: #f8e16c;
+$powder-blush: #ffc2b4;
+$coral-glow: #ff7b4b;
+$strawberry-red: #ff183f;
+$white: #ffffff;
+$digital-blue: #006fff;
+
+
+$gradient-primary: linear-gradient(135deg, $carbon-black, $cyan-glow, $mint-leaf, $royal-gold, $coral-glow);
+$gradient-topbar: linear-gradient(135deg, rgba($cyan-glow, 0.7), rgba($mint-leaf, 0.5), rgba($royal-gold, 0.5));
+$gradient-button: linear-gradient(135deg, $mint-leaf, $royal-gold);
+$gradient-success: linear-gradient(135deg, $mint-leaf, $royal-gold);
+$gradient-error: linear-gradient(135deg, $strawberry-red, $coral-glow);
+
+
+$carbon-black-20: rgba(31, 31, 31, 0.2);
+$cyan-glow-20: rgba(17, 243, 255, 0.2);
+$mint-leaf-20: rgba(0, 196, 154, 0.2);
+$royal-gold-20: rgba(248, 225, 108, 0.2);
+$powder-blush-20: rgba(255, 194, 180, 0.2);
+$coral-glow-20: rgba(255, 123, 75, 0.2);
+
+$carbon-black-40: rgba(31, 31, 31, 0.4);
+$cyan-glow-40: rgba(17, 243, 255, 0.4);
+$mint-leaf-40: rgba(0, 196, 154, 0.4);
+$royal-gold-40: rgba(248, 225, 108, 0.4);
+
+
+$color-primary: $cyan-glow;
+$color-primary-light: $mint-leaf;
+$color-primary-lighter: $royal-gold;
+$color-accent: $royal-gold;
+$color-success: $mint-leaf;
+$color-success-dark: $cyan-glow;
+$color-error: $strawberry-red;
+$color-warning: $coral-glow;
+$color-neutral: $carbon-black;
+$color-dark: $carbon-black;
+$color-light: $white;
+
+
+$topbar-bg: $gradient-topbar;
+$question-box-border: $cyan-glow;
+$answer-button-gradient: linear-gradient(145deg, $cyan-glow, $mint-leaf, $royal-gold);
+$correct-answer: linear-gradient(145deg, $mint-leaf, $royal-gold);
+$wrong-answer: linear-gradient(145deg, $strawberry-red, $coral-glow);

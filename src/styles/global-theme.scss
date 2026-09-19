@@ -1,0 +1,62 @@
+/*
+ * Happy Number - Open Source Math Game
+ *
+ * This is an open-source project of https://math-hero.online and https://happy-number.online
+ * The author of this project is TNQ MEDIA
+ * GitHub: https://github.com/xcoj027/happy-number-lite
+ *
+ * You are free to clone, modify, contribute, fork, and build commercial products
+ * from this project. All pull requests are welcome.
+ * You can also open any issues or report bugs.
+
+ */
+:root {
+
+  --t-primary: rgba(255, 255, 255, 0.92);
+  --t-secondary: rgba(255, 255, 255, 0.78);
+  --t-tertiary: rgba(255, 255, 255, 0.60);
+  --t-muted: rgba(255, 255, 255, 0.45);
+  --t-faint: rgba(255, 255, 255, 0.30);
+
+  --grade-text: rgba(255, 255, 255, 0.95);
+
+  --grade-card-base: #252240;
+  --grade-card-side-shadow: rgba(0, 0, 0, 0.35);
+  --grade-card-footer-overlay: rgba(8, 6, 28, 0.65);
+
+  --bg-page: #0f172a;
+  --bg-panel: rgba(255, 255, 255, 0.02);
+  --bg-card: rgba(255, 255, 255, 0.06);
+  --bg-elevated: rgba(255, 255, 255, 0.08);
+  --bg-overlay: rgba(2, 6, 23, 0.72);
+  --bg-modal-root: rgba(255, 255, 255, 0.08);
+
+  --bg-surface-low: rgba(255, 255, 255, 0.04);
+  --bg-surface-mid: rgba(255, 255, 255, 0.08);
+  --bg-surface-high: rgba(255, 255, 255, 0.12);
+
+  --b-panel: rgba(255, 255, 255, 0.06);
+  --b-card: rgba(255, 255, 255, 0.07);
+  --b-input: #334155;
+  --b-divider: rgba(255, 255, 255, 0.10);
+
+  --btn-primary-bg: linear-gradient(110deg, #67e8f9 0%, #86efac 58%, #fde68a 100%);
+  --btn-primary-text: #083344;
+  --btn-danger-bg: rgba(200, 0, 40, 0.08);
+  --btn-danger-border: rgba(200, 0, 40, 0.25);
+  --btn-danger-text: #b00030;
+
+  --shadow-heavy: 0 18px 36px rgba(2, 6, 23, 0.45);
+
+  --filter-muted: grayscale(20%) brightness(0.65) saturate(0.75);
+
+  --accent-cyan: #11F3FF;
+  --accent-green: #00C49A;
+  --accent-red: #F87171;
+  --accent-blue: #4FC3F7;
+  --accent-purple: #7c3aed;
+
+  --scrollbar-track: #1f1f1f;
+  --scrollbar-thumb: #11f3ff;
+}
+
